@@ -2,8 +2,14 @@
 name = "bevy_windows_param"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy", "gamedev", "windows"]
+categories = ["game-development"]
+repository = "https://github.com/ickshonpe/bevy_windows_param"
+description = "Bevy `SystemParam` providing a more ergonomic interface for accessing window-specific information, like resolutions and cursor positions."
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = "0.10.1"
+bevy = "0.10"

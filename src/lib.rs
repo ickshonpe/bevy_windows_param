@@ -107,7 +107,7 @@ impl Windows<'_, '_> {
     }
 
     /// Returns the cursor position in window coordinates
-    pub fn raw_cursor_position(&self) -> Option<CursorPosition> {
+    pub fn cursor_position(&self) -> Option<CursorPosition> {
         self.into_iter()
             .find_map(|(entity, window)| {
                 window.cursor_position().map(|position| (entity, position))
@@ -131,6 +131,7 @@ impl Windows<'_, '_> {
     }
 
     /// Returns the cursor position in UI coordinates
+    /// (y coordinates increase going downwards with the origin in the top-left corner)
     pub fn ui_cursor_position(&self) -> Option<CursorPosition> {
         self.camera_query
             .iter()
@@ -166,7 +167,7 @@ impl Windows<'_, '_> {
     }
 
     /// Returns the cursor position in world coordinates
-    pub fn world_cursor_position(&self) -> Option<Vec2> {
+    pub fn world_cursor_position(&self) -> Option<CursorPosition> {
         self.camera_query
             .into_iter()
             .filter_map(|(camera, _, transform)| {
@@ -183,7 +184,10 @@ impl Windows<'_, '_> {
                         .and_then(|cursor_position| {
                             camera.viewport_to_world(transform, cursor_position)
                         })
-                        .map(|ray| ray.origin.truncate())
+                        .map(|ray| CursorPosition {
+                            window_ref,
+                            position: ray.origin.truncate(),
+                        })
                 })
             })
     }
