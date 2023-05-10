@@ -1,6 +1,6 @@
 [package]
 name = "bevy_windows_param"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 keywords = ["bevy", "gamedev", "windows"]
@@ -13,3 +13,6 @@ readme = "README.md"
 
 [dependencies]
 bevy = { version = "0.10", default_features = false, features = ["bevy_ui", "bevy_render"] }
+
+[dev-dependencies]
+bevy = { version = "0.10" }
